@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #cce0ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 320px;
+      width: 90%;
+      animation: fadeIn 0.5s ease;
+    }
+
+    img {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      font-size: 18px;
+      padding: 16px 40px;
+    }
+
+    #no {
+      background: #eee;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="content">
+  <img src="Jump Bear GIF - Jump Bear Cute - Discover & Share GIFs.gif" alt="Bear with roses" id="sceneImg">
+  <h1 id="sceneTitle">Will you be my Valentine? 💖</h1>
+  <button id="yes" onclick="firstYes()">Yes 💕</button>
+  <button id="no" onclick="firstNo()">No 🙃</button>
+</div>
+
+<script>
+const scenes = [
+  { img: "cat-smile.gif", title: "Are you sure? 🤔" },
+  { img: "spongebob-squarepants-begging.gif", title: "Really? 🥺" },
+  { img: "Jump Bear GIF - Jump Bear Cute - Discover & Share GIFs.gif", title: "Just think about it..." },
+  { img: "cat-smile.gif", title: "If you say no, I will be very sad 😢" },
+  { img: "jerry-beg.gif", title: "Very very very very sad 😭" },
+  { img: "200w.gif", title: "How about now?" },
+  { img: "sad-wish-you-were-here.gif", title: "Just kidding, PLEASE SAY YES ehehehe" },
+  { img: "hidding-emotions.gif", title: "Fine, I'll take Dino and Sour with me then" },
+  { img: "swing-dance-swing-your-hips.gif", title: "Too bad, but your only option is YESSS" }
+];
+
+let sceneIndex = 0;
+
+// FIRST PAGE YES
+function firstYes() {
+  happyEnding();
+}
+
+// FIRST PAGE NO
+function firstNo() {
+  sceneIndex = 0;
+  showScene();
+}
+
+// SHOW SCENE FUNCTION
+function showScene() {
+  const content = document.getElementById("content");
+
+  if (sceneIndex < scenes.length - 1) {
+    // All scenes except the last
+    content.innerHTML = `
+      <img src="${scenes[sceneIndex].img}" id="sceneImg" style="width:180px; margin-bottom:20px;">
+      <h1 id="sceneTitle">${scenes[sceneIndex].title}</h1>
+      <button id="yes" onclick="nextScene()">Yes 💕</button>
+      <button id="no" onclick="nextScene()">No 🙃</button>
+    `;
+  } else {
+    // LAST SCENE: only Yes buttons
+    content.innerHTML = `
+      <img src="${scenes[sceneIndex].img}" id="sceneImg" style="width:180px; margin-bottom:20px;">
+      <h1 id="sceneTitle">${scenes[sceneIndex].title}</h1>
+      <button id="yes1" onclick="happyEnding()">Yes 💕</button>
+      <button id="yes2" onclick="happyEnding()">Yes 💕</button>
+    `;
+  }
+}
+
+// MOVE TO NEXT SCENE
+function nextScene() {
+  sceneIndex++;
+  showScene();
+}
+
+// HAPPY ENDING
+function happyEnding() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #ffd6e8, #cce0ff);
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-align:center;
+      flex-direction:column;
+    ">
+      <img src="besito-catlove.gif" style="width:330px; margin-bottom:20px;">
+      <h1>Yay! 🥰<br>Love you, My Sweet Potato 🥔 💕</h1>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
